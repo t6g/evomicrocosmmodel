@@ -1,0 +1,170 @@
+database redox.dat
+
+solution 1
+pH     7.00
+Ca     2.80
+K      0.16
+Cl     6.06
+Mg     0.76
+C(4)     6.60
+#Nitrate   1.0
+Sulfate 4.92
+Uranyl 0.0195
+Na     5.51 charge
+#Mn(2) 0.029
+#Ethanol 9.0
+#Oleate 0.92
+Triglyceride 0.285
+Amm    1.0e-3
+Acetate 1.0e-10
+Methane 1.0e-10
+Hzero   1.0e-10
+Sulfide 1.0e-10
+Nzero   1.0e-10
+Uranous 1.0e-10
+Ferrous 1.0e-20
+Ferric  1.0e-20 redoxGoethite 0.0
+ 
+equilibrium_phases 1
+redoxUraninite 0.0 0.0
+redoxGoethite  0.0 0.036
+redoxFeS(ppt)  0.0 0.0
+Calciumoleate  0.0 0.0
+FixpH  -7.13 HCl 10.0
+ 
+surface 1
+Hfo_w redoxGoethite 0.2 1.068e4
+Hfo_s redoxGoethite 0.005 1.068e4
+-equilibrate 1
+ 
+USE SOLUTION 1; USE SURFACE 1
+ 
+KINETICS
+-cvode
+
+Triglyceridek
+-formula Triglyceride 1.0 H2O 3.0 HOleate -3.0 Glycerol -1.0
+-parms 3.0E-4
+ 
+HGGk
+ -m0 0.0
+ -formula H -26.0 Hzero2 -10.0 Acetate -30.0 H2O -13.0 HCO3 5.0 Glycerol 20.0
+ -parms 1.0E-6 5.5e-5 1.0e-6
+ 
+HGGd
+ -m0 2.0E-6
+ -formula CH2O 0.0
+ -parms 1.0e-7
+ 
+SROk
+ -m0 0.0
+ -formula H -18.75 HSulfide -16.25 Acetate -45.0 H2O 2.0 HCO3 5.0 SulfateO4 16.25 Oleate 5.0
+ -parms 6.0E-6 1.22e-4 3.9e-5 1.0e-6
+ 
+SROd
+ -m0 1.0e-6
+ -formula CH2O 0.0
+ -parms 1.0e-7
+
+HGOk
+ -m0 0.0
+ -formula H -27.0 Hzero2 -50.0 Acetate -36.0 H2O 51.0 HCO3 5.0 Oleate 4.0
+ -parms 1.00E-6 1.22e-4 1.0E-6
+ 
+HGOd
+ -m0 1.00E-6
+ -formula CH2O 0.0
+ -parms 1.0e-7
+ 
+FeREAd
+ -m0 4.40E-7
+ -formula CH2O 0.0
+ -parms 1.0e-7
+ 
+SREHd
+ -m0   1.16E-7
+ -formula CH2O 0.0
+ -parms 1.0e-7
+ 
+SRHk
+ -m0 0.0
+ -formula H2O -82.6115 HSulfide -17.4029 H 21.4029 Hzero2 79.6115 HCO3 5.0 SulfateO4 17.4029
+ -parms 2.19E-6 1.1E-6 3.9E-5 1.0E-6
+ 
+SRAk
+ -m0 0.0
+ -formula H2O -3.0 HSulfide -22.4522 HCO3 -44.9044 H 1.5 SulfateO4 22.4522 Acetate 24.9522
+ -parms 4.00E-6 5.0E-6 3.9E-5 1.0E-6
+ 
+SRAd
+ -m0 1.0E-7
+ -formula CH2O 0.0
+ -parms 1.0E-7
+ 
+FeRAk
+ -m0 0.0
+ -formula Ferrous -150.1676 H -166.4385 HCO3 -37.5419 Ferric 150.1676 H2O 72.0838 Acetate 21.2709
+ -parms  2.07E-6 1.2E-5 7.0 1.0E-6
+ 
+FeRHk
+ -m0 0.0
+ -formula Ferrous -114.7648 H -109.7648 H2O -13.0 Ferric 114.7648 HCO3 5.0 Hzero2 67.3824
+ -parms  3.25E-7 1.0E-6 7.0 1.0E-6
+ 
+FeRHd
+ -m0 1.00E-7
+ -formula CH2O 0.0
+ -parms 1.0e-7
+
+URHk
+ -m0 0.0
+ -formula H2O -46.3680 Uranous -16.6840 H 37.3679 Hzero2 26.6840 HCO3 5.0 UranylO2 16.6840
+ -parms 1.00E-6 1.0e-6 3.0e-4 1.0e-6
+ 
+URAk
+ -m0 0.0
+ -formula H2O -40.0921 HCO3 -18.5461 Uranous -37.0921 H 66.4112 Acetate 11.7730 UranylO2 37.0921
+ -parms 1.00E-6 1.0e-4 3.0e-4 1.0e-6
+ 
+MeGAk
+ -m0 0.0
+ -formula HCO3 -101.1836 MethaneH4 -101.1836 H 1.5 H2O 98.1836 Acetate 103.6836
+ -parms 1.70E-6 2.3e-5 1.0e-6 8.64e6
+ 
+MeGAd
+ -m0 6.94E-7
+ -formula CH2O 0.0
+ -parms 1.0e-7
+ 
+MeGHk
+ -m0 0.0
+ -formula H2O -255.6428 MethaneH4 -80.8809 H 84.8809 Hzero2 333.5237 HCO3 85.8809
+ -parms 1.08E-6 4.7e-6 1.0e-6
+ 
+MeGHd
+ -m0 1.00E-7
+ -formula CH2O 0.0
+ -parms 1.0e-7
+ 
+redoxSiderite 
+ -m0 0.0
+ 
+ -steps 1.728e7 in 1728 steps
+ 
+INCREMENTAL_REACTIONS true
+ 
+PRINT
+-reset false
+-warnings 2
+ 
+SELECTED_OUTPUT
+-file ev21.txt
+-simulation false
+-state false
+-distance false
+-totals Triglyceride Oleate Glycerol Ethanol Acetate Hzero Methane Sulfate Sulfide Uranyl C(4) Ferric Ferrous
+-molalities HCO3- Hzero2 Ferrous+2 Hfo_sOUranylO2+ Hfo_wOUranylO2+ Hfo_wOUranylO2CO3- Hfo_wOUranylO2(CO3)2-3 Hfo_wOUranylO2OH Hfo_wCO3- Hfo_wHCO3 Hfo_wSulfateO4- Hfo_wOHSulfateO4-2 
+-kinetic_reactants SREHd SRAd SROd FeREAd FeRHd HGEd HGGd HGOd MeGAd MeGHd redoxSiderite
+-equilibrium_phases redoxUraninite redoxGoethite redoxFeS(ppt) Calciumoleate
+-si FeRE FeRA FeRH URE URA URH SRE SRA SRH SRO HGE HGG HGO MeGA MeGH 
+END

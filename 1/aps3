@@ -1,0 +1,6 @@
+sed -i -e '1,3 s_.*_#&_' ev1.txt
+sed -i -e '1,3 s_.*_#&_' ev10.txt
+sed -i -e '1,3 s_.*_#&_' ev11.txt
+sed -i -e '1,3 s_.*_#&_' ev2.txt
+sed -i -e '1,3 s_.*_#&_' ev20.txt
+sed -i -e '1,3 s_.*_#&_' ev21.txt
